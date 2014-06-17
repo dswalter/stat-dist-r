@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
 
   rng<-seq(-250,250,0.1)
   rngdf<-data.frame(rng)
-  normalplot<-ggplot(data=rngdf,aes(x=rng))+xlim(-100,100)
+  normalplot<-ggplot(data=rngdf,aes(x=rng))+xlim(-100,100)+ylim(0,0.13)
   
   
   output$normPlot<-renderPlot({
