@@ -10,7 +10,7 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Interactive T distribution density"),
+  titlePanel("Interactive Student's T Density"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
@@ -20,12 +20,15 @@ shinyUI(fluidPage(
         #          min = 1,
          #         max = 50,
           #        value = 30),
-      sliderInput("Degrees of Freedom","df",min=0,max=1000,value=2)
+      sliderInput("degrees","Move the slider to change the degrees of freedom",min=1,max=30,value=1)
     ),
 
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("tPlot")
-    )
+      helpText("Though the t with one degree of freedom looks different from the Normal(0,1), as the degrees of freedom increase, it becomes very close to a standard Normal"),
+      plotOutput("thePlot"),
+      helpText("In all circumstances, the tails of the T distribution are \"fatter,\" which means outliers are more likely under the T distribution."),
+      plotOutput("secondPlot") 
+      )
   )
 ))
