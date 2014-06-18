@@ -28,7 +28,10 @@ shinyUI(fluidPage(
       helpText("Though the t with one degree of freedom looks different from the Normal(0,1), as the degrees of freedom increase, it becomes very close to a standard Normal"),
       plotOutput("thePlot"),
       helpText("In all circumstances, the tails of the T distribution are \"fatter,\" which means outliers are more likely under the T distribution."),
-      plotOutput("secondPlot") 
+      plotOutput("secondPlot"),
+      br(),
+      br(),
+      helpText("© Daniel Walter 2014")
       )
   )
 ))
