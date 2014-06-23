@@ -20,19 +20,18 @@ shinyServer(function(input, output) {
   #  hist(x, breaks = bins, col = 'darkgray', border = 'white')
 
   #})
-
-  rng<-seq(-250,250,0.1)
-  rngdf<-data.frame(rng)
-  normalplot<-ggplot(data=rngdf,aes(x=rng))+xlim(-75,75)+ylim(0,0.10)+
-    ylab("Density")+xlab("Range of X values")+ggtitle("Normal Density")
   
   
-  output$normPlot<-renderPlot({
+  output$binomialPlot<-renderPlot({
     
-    #make a normal distribution based on inputs.
-    yvals<-dnorm(x=rng,mean=input$imean,sd=input$isdev)
-    newdf<-data.frame(rng,yvals)
-    normalplot+geom_ribbon(data=newdf,aes(ymin=0,ymax=yvals),color="#5C246E",fill="#5c246e")
+    #make a binomial density based on inputs.
+    rng=seq(0,input$inn,1)
+    values<-dbinom(x=rng,p=input$inp,size=input$inn)
+    bothdf<-data.frame(rng,values)
+    
+    ggplot(bothdf)+geom_bar(aes(y=values,x=rng),stat="identity",fill="navy blue",binwidth=1/length(rng))+
+      ylab("Probability of X heads")+xlab("Number of Heads")+
+      ggtitle("Binomial Probability Plot") +coord_cartesian(ylim=c(0,1),xlim=c(-0.5,50.5))
   })
   
   
