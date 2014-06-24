@@ -5,20 +5,27 @@ library(ggplot2)
 
 shinyServer(function(input, output) {
 
-  rng<-seq(0,20,0.1)
+  rng<-seq(-5.5,10.5,0.1)
   rngdf<-data.frame(rng)
-  gammaplot<-ggplot(data=rngdf,aes(x=rng))+
-    ylab("Density")+xlab("Range of values")+ggtitle("Gamma Density")+coord_cartesian(xlim=c(-0.5,20),ylim=c(-0.0005,0.8))
-  ourcolor<-"#4b0082"
-  output$gammaPlot<-renderPlot({
+  unifplot<-ggplot(data=rngdf,aes(x=rng))+
+    ylab("Density")+xlab("Range of values")+ggtitle("Uniform Density")+coord_cartesian(xlim=c(-5.5,10.5),ylim=c(-0.0005,1.5))
+  
+  output$unifPlot<-renderPlot({
     
     #make a normal distribution based on inputs.
-    yvals=dgamma(x=rng,shape=input$alpha,scale=input$beta)
+    rmax<-as.numeric(input$range[2])
+    rmin<-as.numeric(input$range[1])
+    rlength<-rmax-rmin
+    rheight<-(1/rlength)
+    
+    yvals<-dunif(x=rng,min=input$range[1],max=input$range[2])
     ydf<-data.frame(rng,yvals)
-    gammaplot+
-      geom_ribbon(data=ydf,aes(ymin=0,ymax=yvals),fill=ourcolor,color=ourcolor)
+    print(unifplot+
+     # geom_ribbon(data=ydf,aes(ymin=0,ymax=yvals))
     #+stat_function(fun=dchisq,args=list(df=input$df),color="black")
-  })
+    geom_rect(aes(xmax=input$range[2],xmin=input$range[1],ymin=0,ymax=4))
+    )
+    })
   
   
   
