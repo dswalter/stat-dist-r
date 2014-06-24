@@ -4,10 +4,10 @@ library(ggplot2)
 shinyServer(function(input, output) {
 
 
-  rng<-seq(0,5,0.2)
+  rng<-seq(0,5,0.01)
   rngdf<-data.frame(rng)
   fplot<-ggplot(data=rngdf,aes(x=rng))+
-    ylab("Density")+xlab("Range of X values")+ggtitle("F Density")+ylim(0,1.5)
+    ylab("Density")+xlab("Range of X values")+ggtitle("F Density")+coord_cartesian(ylim=c(0,1.5))
   
   
   output$fPlot<-renderPlot({
