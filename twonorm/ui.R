@@ -26,7 +26,6 @@ shinyUI(fluidPage(
       fluidRow(column(5,offset=1,sliderInput("onemean","Red Mean",min=-50,max=50,value=-3)),
                column(5,sliderInput("twomean","Blue Mean",min=-50,max=50,value=4))),
       fluidRow(column(5,offset=1,sliderInput("onesdev","Red Standard deviation",min=4,max=25,value=5,step=0.5)),
-               column(5,sliderInput("twosdev","Blue Standard deviation",min=4,max=25,value=10,step=0.5)))
-)
+               column(5,sliderInput("twosdev","Blue Standard deviation",min=4,max=25,value=10,step=0.5)))  
   
-)
+))
