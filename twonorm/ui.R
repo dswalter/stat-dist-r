@@ -9,7 +9,7 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
     p("The normal distribution is governed by two parameters. The first is the mean, or average
       of the distribution. Changing the mean changes the location of the probability density. 
-      Above is a normal distribution that changes based on the mean you choose."),  
+      Below is a normal distribution that changes based on the mean you choose."),  
     plotOutput("meanPlot"),
     sliderInput("meanonly","Mean",min=-50,max=50,value=0,width="45%"),
 
